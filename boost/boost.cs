@@ -105,8 +105,6 @@ namespace boost
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Librys");
             }
 
-            library lib_ = new library(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\boost\test.zip");
-
             Invoke((MethodInvoker)delegate { startMain(); });
         }
     }

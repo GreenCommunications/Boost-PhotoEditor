@@ -104,6 +104,13 @@ namespace boost
             {
                 Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Librys");
             }
+            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Runtime"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Runtime");
+            }
+
+            DataNodes n = new DataNodes("test");
+            Debug.WriteLine(n.getNodeValue());
 
             Invoke((MethodInvoker)delegate { startMain(); });
         }

@@ -43,8 +43,9 @@ namespace boost
       inst.Main(paramaters);
     }
     
-    public void GetPluginInfo()
+    public string[] GetPluginInfo()
     {
+      return pluginData;
     }
   }
 }

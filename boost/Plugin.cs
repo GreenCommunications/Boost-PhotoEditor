@@ -17,12 +17,20 @@ namespace boost
     
     object inst;
     
+    private string[] pluginData;
+    
     public void PluginPlatform(string DLLLocation, string type_)
     {
       dll = Assembly.LoadFrom(DLLLocation);
       type = dll.GetType(type_);
       
       inst = Activator.CreateInstance(type);
+      
+      inst.Name = pluginData["name"];
+      
+      inst.Version = pluginData["version"];
+      
+      inst.Type = pluginData["type"];
     }
     
     public void CallSetupMethod()
@@ -33,6 +41,10 @@ namespace boost
     public void CallMainLoop(object[] parameters)
     {
       inst.Main(paramaters);
+    }
+    
+    public void GetPluginInfo()
+    {
     }
   }
 }

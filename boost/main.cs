@@ -207,13 +207,31 @@ namespace boost
 
             editPanel.Controls.Add(cropLabel);
 
+            PictureBox brightness = new PictureBox();
+            brightness.Image = Properties.Resources.brightness;
+            brightness.Width = 25;
+            brightness.Height = 25;
+            brightness.SizeMode = PictureBoxSizeMode.Zoom;
+            brightness.Location = new Point(editPanel.Width / 2 - brightness.Width / 2, 400);
+
+            editPanel.Controls.Add(brightness);
+
+            Label brightnessLabel = new Label();
+            brightnessLabel.Text = "Brightness";
+            brightnessLabel.Font = new Font("Segoe UI Light", 10, FontStyle.Regular);
+            brightnessLabel.Size = brightnessLabel.PreferredSize;
+            brightnessLabel.ForeColor = Color.White;
+            brightnessLabel.Location = new Point(editPanel.Width / 2 - brightnessLabel.Width / 2, brightness.Height + brightness.Location.Y + 10);
+
+            editPanel.Controls.Add(brightnessLabel);
+
             PictureBox exten = new PictureBox();
             exten.Image = Properties.Resources.extension;
             exten.Width = 25;
             exten.Height = 25;
             exten.SizeMode = PictureBoxSizeMode.Zoom;
-            exten.Location = new Point(editPanel.Width / 2 - exten.Width / 2, 400);
-
+            exten.Location = new Point(editPanel.Width / 2 - exten.Width / 2, 500);
+   
             editPanel.Controls.Add(exten);
 
             Label extenLabel = new Label();

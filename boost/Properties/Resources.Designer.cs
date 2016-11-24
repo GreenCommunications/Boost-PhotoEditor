@@ -93,6 +93,16 @@ namespace boost.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap brightness {
+            get {
+                object obj = ResourceManager.GetObject("brightness", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap closeicn {
             get {
                 object obj = ResourceManager.GetObject("closeicn", resourceCulture);

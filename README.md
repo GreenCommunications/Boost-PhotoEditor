@@ -1,2 +1,5 @@
 # Boost-PhotoViewer
-The new photoviewer for windows
+The new photoeditor for windows
+
+
+**STILL IN ALPHA**

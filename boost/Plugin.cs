@@ -1,51 +1,40 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
+using System.Drawing;
 
 namespace boost
 {
-  class PluginPlatform
-  {
-    Assembly dll;
-    
-    Type type;
-    
-    object inst;
-    
-    private string[] pluginData;
-    
-    public void PluginPlatform(string DLLLocation, string type_)
+    class Plugin
     {
-      dll = Assembly.LoadFrom(DLLLocation);
-      type = dll.GetType(type_);
-      
-      inst = Activator.CreateInstance(type);
-      
-      inst.Name = pluginData["name"];
-      
-      inst.Version = pluginData["version"];
-      
-      inst.Type = pluginData["type"];
+        string path;
+
+        public Plugin(string path_)
+        {
+            path = path_;
+        }
+
+        Bitmap result;
+        public object RunImgUpdate(Bitmap current)
+        {
+            var DLL = Assembly.LoadFile(path);
+            foreach (Type type in DLL.GetExportedTypes())
+            {
+                dynamic c = Activator.CreateInstance(type);
+                result = c.UpdateImage(current);
+            }
+
+            if(result != null)
+            {
+                return result;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
-    
-    public void CallSetupMethod()
-    {
-      inst.Setup();
-    }
-    
-    public void CallMainLoop(object[] parameters)
-    {
-      inst.Main(paramaters);
-    }
-    
-    public string[] GetPluginInfo()
-    {
-      return pluginData;
-    }
-  }
 }

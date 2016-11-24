@@ -18,6 +18,8 @@ namespace boost
     {
         Label pluginLoad;
 
+        public object[] loadedPlugins { get; set; }
+
         public boost()
         {
             this.Width = 500;
@@ -116,7 +118,10 @@ namespace boost
             Exec(delegate { updateMessage("Verifying activation code..."); });
             http codeCheck = new http("http://example.com/");
 
-            Exec(delegate { updateMessage("Finalizing..."); });
+            if(!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\boost"))
+            {
+                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\boost");
+            }
 
             Exec(delegate { startMain(); });
         }

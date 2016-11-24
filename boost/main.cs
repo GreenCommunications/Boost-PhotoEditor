@@ -27,6 +27,8 @@ namespace boost
 
         Panel imagePanel;
 
+        Panel editPanel;
+
         Panel toolbar;
 
         public main()
@@ -39,6 +41,8 @@ namespace boost
             this.BackColor = Color.FromArgb(41, 41, 45);
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, 0);
+            this.Icon = Properties.Resources.boostico;
+            this.Text = "Boost Editor";
 
             Panel sidebar = new Panel();
             sidebar.Width = 100;
@@ -139,6 +143,69 @@ namespace boost
             sidebar.Controls.Add(assistLabel);
 
             imageFrameRedraw();
+
+            editPanel = new Panel();
+            editPanel.Location = new Point(imagePanel.Width - 70, 0);
+            editPanel.Width = 70;
+            editPanel.Height = imagePanel.Height;
+            editPanel.BackColor = Color.FromArgb(58, 58, 65);
+            editPanel.Visible = false;
+
+            imagePanel.Controls.Add(editPanel);
+
+            PictureBox filterSelect = new PictureBox();
+            filterSelect.Image = Properties.Resources.filter;
+            filterSelect.Width = 25;
+            filterSelect.Height = 25;
+            filterSelect.SizeMode = PictureBoxSizeMode.Zoom;
+            filterSelect.Location = new Point(editPanel.Width / 2 - filterSelect.Width / 2, 100);
+
+            editPanel.Controls.Add(filterSelect);
+
+            Label filterLabel = new Label();
+            filterLabel.Text = "Filter";
+            filterLabel.Font = new Font("Segoe UI Light", 10, FontStyle.Regular);
+            filterLabel.Size = filterLabel.PreferredSize;
+            filterLabel.ForeColor = Color.White;
+            filterLabel.Location = new Point(editPanel.Width / 2 - filterLabel.Width / 2, filterSelect.Location.Y + filterSelect.Height + 10);
+
+            editPanel.Controls.Add(filterLabel);
+
+            PictureBox exposure = new PictureBox();
+            exposure.Image = Properties.Resources.exposure;
+            exposure.Width = 25;
+            exposure.Height = 25;
+            exposure.SizeMode = PictureBoxSizeMode.Zoom;
+            exposure.Location = new Point(editPanel.Width / 2 - exposure.Width / 2, 200);
+
+            editPanel.Controls.Add(exposure);
+
+            Label exposureLabel = new Label();
+            exposureLabel.Text = "Exposure";
+            exposureLabel.Font = new Font("Segoe UI Light", 10, FontStyle.Regular);
+            exposureLabel.Size = exposureLabel.PreferredSize;
+            exposureLabel.ForeColor = Color.White;
+            exposureLabel.Location = new Point(editPanel.Width / 2 - exposureLabel.Width / 2, exposure.Location.Y + exposure.Height + 10);
+
+            editPanel.Controls.Add(exposureLabel);
+
+            PictureBox crop = new PictureBox();
+            crop.Image = Properties.Resources.crop;
+            crop.Width = 25;
+            crop.Height = 25;
+            crop.SizeMode = PictureBoxSizeMode.Zoom;
+            crop.Location = new Point(editPanel.Width / 2 - crop.Width / 2, 300);
+
+            editPanel.Controls.Add(crop);
+
+            Label cropLabel = new Label();
+            cropLabel.Text = "Crop";
+            cropLabel.Font = new Font("Segoe UI Light", 10, FontStyle.Regular);
+            cropLabel.Size = cropLabel.PreferredSize;
+            cropLabel.ForeColor = Color.White;
+            cropLabel.Location = new Point(editPanel.Width / 2 - cropLabel.Width / 2, crop.Location.Y + crop.Height + 10);
+
+            editPanel.Controls.Add(cropLabel);
         }
 
         private void Assist_Click(object sender, EventArgs e)
@@ -197,7 +264,14 @@ namespace boost
 
         private void EditButton_Click(object sender, EventArgs e)
         {
-            // TODO
+            if(editPanel.Visible)
+            {
+                editPanel.Visible = false;
+            }
+            else
+            {
+                editPanel.Visible = true;
+            }
         }
 
         private void Close_Click(object sender, EventArgs e)

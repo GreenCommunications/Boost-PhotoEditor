@@ -52,7 +52,6 @@
     </Compile>
     <Compile Include="DataNodes.cs" />
     <Compile Include="http.cs" />
-    <Compile Include="library.cs" />
     <Compile Include="main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +94,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\load.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closeicn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimize.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\feedback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\import.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\albums.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\assist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\boost_square.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\photos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ic_mode_edit_white_36dp_1x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

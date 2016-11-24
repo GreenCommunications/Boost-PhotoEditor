@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics;
+using System.Collections;
 
 namespace boost
 {
@@ -79,40 +80,45 @@ namespace boost
             this.Close();
         }
 
+        bool catcher;
+        private void Exec(MethodInvoker opr)
+        {
+            catcher = false;
+
+            while(!catcher)
+            {
+                try
+                {
+                    this.Invoke(opr);
+
+                    catcher = true;
+
+                    Debug.WriteLine("Complete");
+                }
+                catch(InvalidOperationException)
+                {
+                    catcher = false;
+
+                    Debug.WriteLine("ISSUE");
+                }
+            }
+        }
+
         void splashThread()
         {
-            Invoke((MethodInvoker)delegate { updateMessage("Checking for updates..."); });
+            Exec(delegate { updateMessage("Checking for updates..."); });
             http updateCheck = new http("http://example.com/");
             if(updateCheck.getResponce().GetType() == typeof(bool))
             {
                 MessageBox.Show("Failed to check for updates.\nCheck network connection");
             }
 
-            Invoke((MethodInvoker)delegate { updateMessage("Verifying activation code..."); });
+            Exec(delegate { updateMessage("Verifying activation code..."); });
             http codeCheck = new http("http://example.com/");
 
-            Invoke((MethodInvoker)delegate { updateMessage("Prepareing Folder Enviornment"); });
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost"))
-            {
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost");
-            }
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Plugins"))
-            {
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Plugins");
-            }
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Librys"))
-            {
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Librys");
-            }
-            if (!Directory.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Runtime"))
-            {
-                Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/boost/Runtime");
-            }
+            Exec(delegate { updateMessage("Finalizing..."); });
 
-            DataNodes n = new DataNodes("test");
-            Debug.WriteLine(n.getNodeValue());
-
-            Invoke((MethodInvoker)delegate { startMain(); });
+            Exec(delegate { startMain(); });
         }
     }
 }

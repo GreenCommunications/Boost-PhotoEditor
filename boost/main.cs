@@ -206,6 +206,24 @@ namespace boost
             cropLabel.Location = new Point(editPanel.Width / 2 - cropLabel.Width / 2, crop.Location.Y + crop.Height + 10);
 
             editPanel.Controls.Add(cropLabel);
+
+            PictureBox exten = new PictureBox();
+            exten.Image = Properties.Resources.extension;
+            exten.Width = 25;
+            exten.Height = 25;
+            exten.SizeMode = PictureBoxSizeMode.Zoom;
+            exten.Location = new Point(editPanel.Width / 2 - exten.Width / 2, 400);
+
+            editPanel.Controls.Add(exten);
+
+            Label extenLabel = new Label();
+            extenLabel.Text = "Plugins";
+            extenLabel.Font = new Font("Segoe UI Light", 10, FontStyle.Regular);
+            extenLabel.Size = extenLabel.PreferredSize;
+            extenLabel.ForeColor = Color.White;
+            extenLabel.Location = new Point(editPanel.Width / 2 - extenLabel.Width / 2, exten.Height + exten.Location.Y + 10);
+
+            editPanel.Controls.Add(extenLabel);
         }
 
         private void Assist_Click(object sender, EventArgs e)
